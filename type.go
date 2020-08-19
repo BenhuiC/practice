@@ -31,3 +31,8 @@ func pre(root *TreeNode) {
 	fmt.Print(root.Val)
 	pre(root.Right)
 }
+
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
