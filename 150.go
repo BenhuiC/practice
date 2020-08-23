@@ -28,14 +28,3 @@ func evalRPN(tokens []string) int {
 	}
 	return s.Pop()
 }
-
-type stack []int
-
-func (s *stack) Pop() int {
-	if len(*s) > 0 {
-		r := (*s)[len(*s)-1]
-		*s = (*s)[:len(*s)-1]
-		return r
-	}
-	return 0
-}

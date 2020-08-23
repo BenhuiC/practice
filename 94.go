@@ -29,6 +29,17 @@ func inorderTraversal2(root *TreeNode) []int {
 		root = n.Right
 		result = append(result, n.Val)
 	}
+	st := make([]*TreeNode, 0)
+	for root != nil || len(st) > 0 {
+		for root != nil {
+			st = append(st, root)
+			root = root.Left
+		}
+		n := st[len(st)-1]
+		st = st[:len(st)-1]
+		result = append(result, n.Val)
+		root = n.Right
+	}
 
 	return result
 }

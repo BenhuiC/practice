@@ -36,3 +36,25 @@ type ListNode struct {
 	Val  int
 	Next *ListNode
 }
+
+type stack []int
+
+func (s *stack) Pop() int {
+	if len(*s) > 0 {
+		r := (*s)[len(*s)-1]
+		*s = (*s)[:len(*s)-1]
+		return r
+	}
+	return 0
+}
+
+func (s *stack) Peek() int {
+	if len(*s) > 0 {
+		return (*s)[len(*s)-1]
+	}
+	return 0
+}
+
+func (s *stack) Empty() bool {
+	return s == nil || len(*s) <= 0
+}
