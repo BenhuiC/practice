@@ -1,4 +1,4 @@
-package sort
+package mysort
 
 func QuickSort(ary []int, left, right int) {
 	if right-left <= 1 {

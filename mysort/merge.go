@@ -1,4 +1,4 @@
-package sort
+package mysort
 
 func MergeSort(ary []int) []int {
 	if len(ary) <= 1 {

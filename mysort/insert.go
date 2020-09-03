@@ -1,4 +1,4 @@
-package sort
+package mysort
 
 func InsertSort(ary []int) {
 	for i := 1; i < len(ary); i++ {

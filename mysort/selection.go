@@ -1,4 +1,4 @@
-package sort
+package mysort
 
 func SelectionSort(ary []int) {
 	for i := 0; i < len(ary)-1; i++ {

@@ -1,4 +1,4 @@
-package sort
+package mysort
 
 func ShellSort(ary []int) {
 	for gap := len(ary) / 2; gap > 0; gap /= 2 {

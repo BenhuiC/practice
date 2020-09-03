@@ -20,3 +20,21 @@ func jump(nums []int) int {
 	}
 	return mp[0]
 }
+
+func jump2(nums []int) int {
+	if len(nums) <= 1 {
+		return 0
+	}
+	var start, end, max, step int
+	for end < len(nums)-1 {
+		for i := start; i <= end; i++ {
+			if i+nums[i] > max {
+				max = i + nums[i]
+			}
+		}
+		start = end + 1
+		end = max
+		step++
+	}
+	return step
+}
