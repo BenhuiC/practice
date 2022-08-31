@@ -66,13 +66,6 @@ func (s *stack) Empty() bool {
 	return s == nil || len(*s) <= 0
 }
 
-func min(m, n int) int {
-	if m < n {
-		return m
-	}
-	return n
-}
-
 type MinHeap []*ListNode
 
 func NewMinHeap() MinHeap {
