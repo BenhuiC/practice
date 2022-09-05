@@ -1,13 +1,11 @@
 package partice
 
-import "test/practice"
-
-func buildTree(inorder []int, postorder []int) *practice.TreeNode {
+func buildTree(inorder []int, postorder []int) *TreeNode {
 	n := len(postorder)
 	if n == 0 {
 		return nil
 	}
-	res := &practice.TreeNode{}
+	res := &TreeNode{}
 	res.Val = postorder[n-1]
 	idx := 0
 	for ; idx < n; idx++ {

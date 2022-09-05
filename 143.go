@@ -20,7 +20,7 @@ func reorderList(head *ListNode) {
 		cut(head, i/2+1)
 		cut(rev.Next, i/2)
 	}
-	merge(head, rev.Next)
+	merge143(head, rev.Next)
 }
 
 func cut(l *ListNode, n int) {
@@ -34,7 +34,7 @@ func cut(l *ListNode, n int) {
 	}
 }
 
-func merge(l1, l2 *ListNode) {
+func merge143(l1, l2 *ListNode) {
 	for p, q := l1, l2; q != nil && p != nil; {
 		tmp := p.Next
 		tmp2 := q.Next

@@ -2,25 +2,24 @@ package partice
 
 import (
 	"fmt"
-	"test/practice"
 	"testing"
 )
 
 func Test_printTree(t *testing.T) {
 	tests := []struct {
-		root *practice.TreeNode
+		root *TreeNode
 	}{
 		{
-			root: &practice.TreeNode{Val: 1},
+			root: &TreeNode{Val: 1},
 		},
 		{
-			root: &practice.TreeNode{Val: 1, Left: &practice.TreeNode{Val: 2}, Right: &practice.TreeNode{Val: 3}},
+			root: &TreeNode{Val: 1, Left: &TreeNode{Val: 2}, Right: &TreeNode{Val: 3}},
 		},
 		{
-			root: &practice.TreeNode{Val: 1, Left: &practice.TreeNode{Val: 2}},
+			root: &TreeNode{Val: 1, Left: &TreeNode{Val: 2}},
 		},
 		{
-			root: &practice.TreeNode{Val: 1, Left: &practice.TreeNode{Val: 2, Left: &practice.TreeNode{Val: 3}}},
+			root: &TreeNode{Val: 1, Left: &TreeNode{Val: 2, Left: &TreeNode{Val: 3}}},
 		},
 	}
 	for _, tt := range tests {
