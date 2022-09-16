@@ -1,6 +1,6 @@
 package partice
 
-func buildTree(inorder []int, postorder []int) *TreeNode {
+func buildTree106(inorder []int, postorder []int) *TreeNode {
 	n := len(postorder)
 	if n == 0 {
 		return nil

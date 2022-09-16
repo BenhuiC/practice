@@ -1,4 +1,4 @@
-package partice
+package offer
 
 func lengthOfLongestSubstring(s string) int {
 	if len(s) < 2 {

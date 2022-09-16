@@ -1,4 +1,4 @@
-package partice
+package offer
 
 import (
 	"sort"

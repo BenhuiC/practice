@@ -1,13 +1,16 @@
 package partice
 
 func distributeCandies(candyType []int) int {
-	m := map[int]struct{}{}
+	var res575 int
+	m := make(map[int]int)
 	for _, v := range candyType {
-		m[v] = struct{}{}
+		m[v]++
 	}
-	res := len(candyType) / 2
-	if len(m) < res {
-		res = len(m)
+	if len(m) <= len(candyType)/2 {
+		res575 = len(m)
+	} else {
+		res575 = len(candyType) / 2
 	}
-	return res
+
+	return res575
 }
