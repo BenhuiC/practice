@@ -39,6 +39,14 @@ func Test_sumOfDistancesInTree(t *testing.T) {
 			},
 			want: []int{1, 1},
 		},
+		{
+			name: "4",
+			args: args{
+				n:     6,
+				edges: [][]int{{0, 1}, {0, 3}, {2, 3}, {2, 4}, {2, 5}},
+			},
+			want: []int{10, 14, 8, 8, 12, 12},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

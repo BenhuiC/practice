@@ -1,7 +1,7 @@
 package partice
 
 func sumOfDistancesInTree(n int, edges [][]int) []int {
-	// todo
+	// todo 有待一日
 	res := make([]int, n)
 	if n == 1 {
 		return res
