@@ -48,7 +48,7 @@ func Test_constructArray(t *testing.T) {
 			t.Log(got)
 			m := map[int]struct{}{}
 			for i := 1; i < len(got); i++ {
-				m[abs(got[i]-got[i-1])] = struct{}{}
+				m[Abs(got[i]-got[i-1])] = struct{}{}
 			}
 			if len(got) != tt.args.n || len(m) != tt.args.k {
 				t.Errorf("constructArray() = %v,got len:%v, want %v", got, len(m), tt.args.k)

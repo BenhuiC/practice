@@ -8,9 +8,9 @@ func maxProduct152(nums []int) int {
 	for i := 1; i < len(nums); i++ {
 		mi := imin
 		ma := imax
-		imin = min(ma*nums[i], min(mi*nums[i], nums[i]))
-		imax = max(ma*nums[i], max(mi*nums[i], nums[i]))
-		res152 = max(res152, imax)
+		imin = Min(ma*nums[i], Min(mi*nums[i], nums[i]))
+		imax = Max(ma*nums[i], Max(mi*nums[i], nums[i]))
+		res152 = Max(res152, imax)
 	}
 
 	return res152

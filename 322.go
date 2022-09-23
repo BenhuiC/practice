@@ -13,7 +13,7 @@ func coinChange(coins []int, amount int) int {
 		cost := MAX_INT
 		for _, v := range coins {
 			if i-v >= 0 && dp[i-v] != MAX_INT {
-				cost = min(cost, dp[i-v]+1)
+				cost = Min(cost, dp[i-v]+1)
 			}
 		}
 		dp[i] = cost

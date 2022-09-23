@@ -9,7 +9,7 @@ func maxSubArray(nums []int) int {
 		} else {
 			sum = v
 		}
-		res = max(sum, res)
+		res = Max(sum, res)
 	}
 	return res
 }

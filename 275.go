@@ -8,7 +8,7 @@ func hIndex(citations []int) int {
 		mid := (left + right) >> 1
 		sub := n - mid
 		if citations[mid] >= sub {
-			res = max(res, sub)
+			res = Max(res, sub)
 			right = mid
 			if citations[mid] == sub {
 				break

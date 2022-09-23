@@ -16,7 +16,7 @@ func findClosestElements(arr []int, k int, x int) []int {
 	minCg := math.MaxInt // 最小差值
 	for r < len(arr) {
 		if r < k {
-			curCg += abs(x - arr[r])
+			curCg += Abs(x - arr[r])
 			r++
 			continue
 		}
@@ -24,8 +24,8 @@ func findClosestElements(arr []int, k int, x int) []int {
 			minCg = curCg
 			res = arr[:k]
 		}
-		curCg += abs(x - arr[r])
-		curCg -= abs(x - arr[l])
+		curCg += Abs(x - arr[r])
+		curCg -= Abs(x - arr[l])
 		l++
 		r++
 		if minCg > curCg {
@@ -39,7 +39,7 @@ func findClosestElements(arr []int, k int, x int) []int {
 
 func findClosestElements2(arr []int, k int, x int) []int {
 	sort.Slice(arr, func(i, j int) bool {
-		return abs(x-arr[i]) <= abs(x-arr[j])
+		return Abs(x-arr[i]) <= Abs(x-arr[j])
 	})
 	fmt.Println(arr)
 	res := arr[:k]

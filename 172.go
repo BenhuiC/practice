@@ -11,6 +11,6 @@ func trailingZeroes(n int) int {
 			num5++
 		}
 	}
-	res172 = min(num2, num5)
+	res172 = Min(num2, num5)
 	return res172
 }

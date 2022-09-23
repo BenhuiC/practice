@@ -12,7 +12,7 @@ func partitionLabels(s string) []int {
 	lastIdx := 0
 	minLen := ary[s[0]-'a']
 	for curIdx := 0; curIdx < len(s); curIdx++ {
-		minLen = max(ary[s[curIdx]-'a'], minLen)
+		minLen = Max(ary[s[curIdx]-'a'], minLen)
 		if curIdx == minLen {
 			res = append(res, curIdx-lastIdx+1)
 			lastIdx = curIdx + 1

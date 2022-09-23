@@ -32,7 +32,7 @@ func treeHeight(root *TreeNode) int {
 	}
 	left := treeHeight(root.Left)
 	right := treeHeight(root.Right)
-	return max(left, right) + 1
+	return Max(left, right) + 1
 }
 
 //输入：root = [1,2,3,null,4]

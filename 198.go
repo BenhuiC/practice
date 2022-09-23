@@ -11,8 +11,8 @@ func rob(nums []int) int {
 	}
 	tmp := make([]int, len(nums)+3)
 	for i := len(nums) - 1; i >= 0; i-- {
-		tmp[i] = max(tmp[i+2], tmp[i+3]) + nums[i]
+		tmp[i] = Max(tmp[i+2], tmp[i+3]) + nums[i]
 	}
 	fmt.Println(tmp)
-	return max(tmp[0], tmp[1])
+	return Max(tmp[0], tmp[1])
 }

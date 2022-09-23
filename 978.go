@@ -18,7 +18,7 @@ func maxTurbulenceSize(arr []int) int {
 				break
 			}
 		}
-		res = max(res, j-i+1)
+		res = Max(res, j-i+1)
 		i = j
 	}
 

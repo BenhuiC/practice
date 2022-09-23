@@ -32,7 +32,7 @@ func (l *MyLinkedList) AddAtIndex(index, val int) {
 	if index > l.size {
 		return
 	}
-	index = max(index, 0)
+	index = Max(index, 0)
 	l.size++
 	pred := l.head
 	for i := 0; i < index; i++ {

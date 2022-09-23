@@ -2,7 +2,7 @@ package partice
 
 func maxScore(cardPoints []int, k int) int {
 	if k == 1 {
-		return max(cardPoints[0], cardPoints[len(cardPoints)-1])
+		return Max(cardPoints[0], cardPoints[len(cardPoints)-1])
 	}
 	res := 0
 	for i := 0; i < k; i++ {
@@ -16,7 +16,7 @@ func maxScore(cardPoints []int, k int) int {
 	for r := k - 1; r >= 0; r-- {
 		cur -= cardPoints[r]
 		cur += cardPoints[l]
-		res = max(cur, res)
+		res = Max(cur, res)
 		l--
 	}
 

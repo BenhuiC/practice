@@ -1,6 +1,8 @@
 package partice
 
-import "fmt"
+import (
+	"fmt"
+)
 
 /*
 每一天分两种情况
@@ -19,8 +21,8 @@ func maxProfit(prices []int) int {
 	}
 	dp[0][1] = -prices[0]
 	for i := 1; i < len(prices); i++ {
-		dp[i][0] = max(dp[i-1][0], prices[i]+dp[i-1][1])
-		dp[i][1] = max(dp[i-1][1], dp[i-1][0]-prices[i])
+		dp[i][0] = Max(dp[i-1][0], prices[i]+dp[i-1][1])
+		dp[i][1] = Max(dp[i-1][1], dp[i-1][0]-prices[i])
 	}
 	fmt.Println(dp)
 	res122 = dp[len(prices)-1][0]

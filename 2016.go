@@ -10,7 +10,7 @@ func maximumDifference(nums []int) int {
 	res = -1
 	for i := n - 2; i >= 0; i-- {
 		if maxV > nums[i] {
-			res = max(res, maxV-nums[i])
+			res = Max(res, maxV-nums[i])
 		} else {
 			maxV = nums[i]
 		}

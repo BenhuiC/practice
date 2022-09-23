@@ -19,15 +19,15 @@ func minDeletionSize(strs []string) int {
 				}
 			}
 			if inc {
-				dp[i] = max(dp[i], dp[j]+1)
+				dp[i] = Max(dp[i], dp[j]+1)
 			} else {
-				dp[i] = max(dp[i], 1)
+				dp[i] = Max(dp[i], 1)
 			}
 		}
 	}
 	fmt.Println(dp)
 	for _, v := range dp {
-		res = max(res, v)
+		res = Max(res, v)
 	}
 
 	return strLen - res

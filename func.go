@@ -2,28 +2,28 @@ package partice
 
 import "fmt"
 
-func max(a, b int) int {
+func Max(a, b int) int {
 	if a > b {
 		return a
 	}
 	return b
 }
 
-func min(m, n int) int {
+func Min(m, n int) int {
 	if m < n {
 		return m
 	}
 	return n
 }
 
-func abs(x int) int {
+func Abs(x int) int {
 	if x < 0 {
 		return -x
 	}
 	return x
 }
 
-func absFloat64(f float64) float64 {
+func AbsFloat64(f float64) float64 {
 	if f < 0 {
 		return -f
 	}

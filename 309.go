@@ -13,8 +13,8 @@ dp[i][2]表示第i天手上有股票时最大受益
 func maxProfit309(prices []int) int {
 	a, b, c := 0, 0, -prices[0]
 	for i := 1; i < len(prices); i++ {
-		a, b, c = max(a, b), prices[i]+c, max(c, a-prices[i])
+		a, b, c = Max(a, b), prices[i]+c, Max(c, a-prices[i])
 	}
 
-	return max(a, b)
+	return Max(a, b)
 }

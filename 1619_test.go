@@ -49,7 +49,7 @@ func Test_trimMean(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := trimMean(tt.args.arr); absFloat64(got-tt.want) > 0.00001 {
+			if got := trimMean(tt.args.arr); AbsFloat64(got-tt.want) > 0.00001 {
 				t.Errorf("trimMean() = %v, want %v", got, tt.want)
 			}
 		})

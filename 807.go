@@ -18,7 +18,7 @@ func maxIncreaseKeepingSkyline(grid [][]int) int {
 	}
 	for i := 0; i < m; i++ {
 		for j := 0; j < n; j++ {
-			h := min(lheight[i], bheight[j])
+			h := Min(lheight[i], bheight[j])
 			res807 += h - grid[i][j]
 		}
 	}

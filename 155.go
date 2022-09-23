@@ -7,7 +7,7 @@ type MinStack struct {
 
 /** initialize your data structure here. */
 //func Constructor() MinStack {
-//	return MinStack{stack: make([]int, 0), min: int(^uint(0) >> 1)}
+//	return MinStack{stack: make([]int, 0), Min: int(^uint(0) >> 1)}
 //}
 
 func (this *MinStack) Push(x int) {

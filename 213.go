@@ -12,7 +12,7 @@ func rob2(nums []int) int {
 		}
 		return res213
 	}
-	return max(robRg(nums[1:]), robRg(nums[:len(nums)-1]))
+	return Max(robRg(nums[1:]), robRg(nums[:len(nums)-1]))
 }
 
 func robRg(nums []int) int {
@@ -24,8 +24,8 @@ func robRg(nums []int) int {
 	}
 	tmp := make([]int, len(nums)+2)
 	for i := len(nums) - 1; i >= 0; i-- {
-		tmp[i] = max(tmp[i+1], tmp[i+2]+nums[i])
+		tmp[i] = Max(tmp[i+1], tmp[i+2]+nums[i])
 	}
 	fmt.Println(tmp)
-	return max(tmp[0], tmp[1])
+	return Max(tmp[0], tmp[1])
 }
