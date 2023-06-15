@@ -38,6 +38,7 @@ func canMakePaliQueries(s string, queries [][]int) []bool {
 
 func canMakePaliQueries2(s string, queries [][]int) []bool {
 	res1177 := make([]bool, len(queries))
+	// 同样的思路，只是用二进制直接表示字符出现次数是否为奇数（使用异或）
 	prefix := make([]int, len(s)+1)
 	prefix[0] = 0
 	for i := 0; i < len(s); i++ {
@@ -51,6 +52,7 @@ func canMakePaliQueries2(s string, queries [][]int) []bool {
 			continue
 		}
 		var oddCount int
+		// 对prefix[right+1] 和prefix[left]异或之后，diff中1的个数就是s[left:right+1]中奇数次数的字符个数
 		diff := prefix[right+1] ^ prefix[left]
 		for diff > 0 {
 			if diff&1 == 1 {
