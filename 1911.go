@@ -1,5 +1,6 @@
 package partice
 
+// 贪心算法
 func maxAlternatingSum(nums []int) int64 {
 	var res1911 int64
 	cur := 1
