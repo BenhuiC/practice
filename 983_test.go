@@ -32,7 +32,7 @@ func Test_mincostTickets(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := mincostTickets(tt.args.days, tt.args.costs); got != tt.want {
+			if got := mincostTickets2(tt.args.days, tt.args.costs); got != tt.want {
 				t.Errorf("mincostTickets() = %v, want %v", got, tt.want)
 			}
 		})

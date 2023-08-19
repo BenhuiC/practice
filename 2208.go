@@ -16,11 +16,11 @@ func (pq PriorityQueue) Swap(i, j int) {
 	pq[i], pq[j] = pq[j], pq[i]
 }
 
-func (pq *PriorityQueue) Push(x any) {
+func (pq *PriorityQueue) Push(x interface{}) {
 	*pq = append(*pq, x.(float64))
 }
 
-func (pq *PriorityQueue) Pop() any {
+func (pq *PriorityQueue) Pop() interface{} {
 	old, n := *pq, len(*pq)
 	x := old[n-1]
 	*pq = old[0 : n-1]

@@ -1,5 +1,10 @@
 package partice
 
+import (
+	"fmt"
+	"math"
+)
+
 /*
 一张 为期一天 的通行证售价为 costs[0] 美元；
 一张 为期七天 的通行证售价为 costs[1] 美元；
@@ -43,4 +48,32 @@ func mincostTickets(days []int, costs []int) int {
 	}
 
 	return f(1)
+}
+
+func mincostTickets2(days []int, costs []int) int {
+	dpM := make([]int, len(days))
+	duration := []int{1, 7, 30}
+
+	var dp func(d int) int
+	dp = func(d int) int {
+		if d >= len(days) {
+			return 0
+		}
+		if dpM[d] > 0 {
+			return dpM[d]
+		}
+
+		dpM[d] = math.MaxInt
+		j := d
+		for i := 0; i < len(duration); i++ {
+			for ; j < len(days) && days[j] < days[d]+duration[i]; j++ {
+			}
+			dpM[d] = Min(dpM[d], dp(j)+costs[i])
+		}
+
+		return dpM[d]
+	}
+	res := dp(0)
+	fmt.Println(dpM)
+	return res
 }
