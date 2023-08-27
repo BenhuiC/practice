@@ -1,10 +1,11 @@
-package recursion
+package link
 
 import (
+	"fmt"
 	"testing"
 )
 
-func Test_reverseBetween(t *testing.T) {
+func Test_isPalindrome(t *testing.T) {
 	l := &ListNode{
 		Val: 1,
 		Next: &ListNode{
@@ -12,14 +13,13 @@ func Test_reverseBetween(t *testing.T) {
 			Next: &ListNode{
 				Val: 3,
 				Next: &ListNode{
-					Val: 4,
+					Val: 2,
 					Next: &ListNode{
-						Val: 5,
+						Val: 1,
 					},
 				},
 			},
 		},
 	}
-	l = reverseBetween(l, 2, 5)
-	printList(l)
+	fmt.Println(isPalindrome(l))
 }
