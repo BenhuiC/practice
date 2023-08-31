@@ -14,19 +14,12 @@ func maxSum(root *TreeNode, n *int) int {
 	left := maxSum(root.Left, n)
 	right := maxSum(root.Right, n)
 
-	m = max(max(left+root.Val, right+root.Val), max(root.Val, left+right+root.Val))
+	m = Max(Max(left+root.Val, right+root.Val), Max(root.Val, left+right+root.Val))
 	if m > *n {
 		*n = m
 	}
 
-	return max(max(left+root.Val, right+root.Val), root.Val)
-}
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
+	return Max(Max(left+root.Val, right+root.Val), root.Val)
 }
 
 /*

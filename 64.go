@@ -23,7 +23,7 @@ func minSum(grid [][]int, x, y int) int {
 		return l + grid[x][y]
 	}
 
-	return min(l, h) + grid[x][y]
+	return Min(l, h) + grid[x][y]
 }
 
 func minPathSum2(grid [][]int) int {
@@ -43,7 +43,7 @@ func minPathSum2(grid [][]int) int {
 			} else if y-1 < 0 {
 				mp[x][y] = grid[x][y] + mp[x-1][y]
 			} else {
-				mp[x][y] = min(mp[x-1][y], mp[x][y-1]) + grid[x][y]
+				mp[x][y] = Min(mp[x-1][y], mp[x][y-1]) + grid[x][y]
 			}
 		}
 	}

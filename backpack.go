@@ -8,7 +8,7 @@ func backPack(val []int, c int) int {
 	for y := 1; y <= c; y++ {
 		for x := 1; x <= len(val); x++ {
 			if y-val[x-1] >= 0 {
-				dp[x][y] = max(dp[x-1][y], dp[x-1][y-val[x-1]]+val[x-1])
+				dp[x][y] = Max(dp[x-1][y], dp[x-1][y-val[x-1]]+val[x-1])
 			} else {
 				dp[x][y] = dp[x-1][y]
 			}
@@ -22,7 +22,7 @@ func backPack2(val []int, c int) int {
 	for i := 0; i < len(val); i++ {
 		for j := c; j > 0; j-- {
 			if j >= val[i] {
-				dp[j] = max(dp[j], dp[j-val[i]]+val[i])
+				dp[j] = Max(dp[j], dp[j-val[i]]+val[i])
 			}
 		}
 	}
@@ -37,7 +37,7 @@ func backPack3(val, wei []int, c int) int {
 	for y := 1; y <= c; y++ {
 		for x := 1; x <= len(val); x++ {
 			if y >= wei[x-1] {
-				dp[x][y] = max(dp[x-1][y], dp[x-1][y-wei[x-1]]+val[x-1])
+				dp[x][y] = Max(dp[x-1][y], dp[x-1][y-wei[x-1]]+val[x-1])
 			} else {
 				dp[x][y] = dp[x-1][y]
 			}
@@ -51,7 +51,7 @@ func backPack4(val, wei []int, c int) int {
 	for i := 0; i < len(val); i++ {
 		for j := c; j > 0; j-- {
 			if j >= wei[i] {
-				dp[j] = max(dp[j], dp[j-wei[i]]+val[i])
+				dp[j] = Max(dp[j], dp[j-wei[i]]+val[i])
 			}
 		}
 	}

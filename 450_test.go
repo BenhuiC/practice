@@ -30,8 +30,8 @@ func Test_delete(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := deleteNo(tt.args.root); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("deleteNo() = %v, want %v", got, tt.want)
+			if got := delete450(tt.args.root); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("delete() = %v, want %v", got, tt.want)
 			}
 		})
 	}

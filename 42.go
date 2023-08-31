@@ -25,7 +25,7 @@ func trap(height []int) int {
 			for x := sta[0]; x < n; x++ {
 				sum += height[x]
 			}
-			rtmp := min(height[sta[0]], height[n])*(n-sta[0]) - sum
+			rtmp := Min(height[sta[0]], height[n])*(n-sta[0]) - sum
 			result += rtmp
 			sta = sta[:0]
 			j = n
