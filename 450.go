@@ -5,14 +5,14 @@ func deleteNode(root *TreeNode, key int) *TreeNode {
 		return root
 	}
 	if root.Val == key {
-		return delete(root)
+		return deleteNo(root)
 	}
 	root.Left = deleteNode(root.Left, key)
 	root.Right = deleteNode(root.Right, key)
 	return root
 }
 
-func delete(root *TreeNode) *TreeNode {
+func deleteNo(root *TreeNode) *TreeNode {
 	if root.Left == nil && root.Right == nil {
 		return nil
 	} else if root.Left == nil {
@@ -22,7 +22,7 @@ func delete(root *TreeNode) *TreeNode {
 	} else {
 		if root.Left.Right == nil {
 			root.Val = root.Left.Val
-			root.Left = delete(root.Left)
+			root.Left = deleteNo(root.Left)
 		} else {
 			pre, n := root.Left, root.Left.Right
 			for n != nil && n.Right != nil {
@@ -30,7 +30,7 @@ func delete(root *TreeNode) *TreeNode {
 				n = n.Right
 			}
 			root.Val = n.Val
-			pre.Right = delete(n)
+			pre.Right = deleteNo(n)
 		}
 		return root
 	}
