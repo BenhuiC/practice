@@ -1,4 +1,4 @@
-package array
+package monotonous_stack
 
 func removeDuplicateLetters(s string) string {
 	if len(s) == 0 {

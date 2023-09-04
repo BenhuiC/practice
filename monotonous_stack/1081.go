@@ -1,4 +1,4 @@
-package array
+package monotonous_stack
 
 import "fmt"
 
