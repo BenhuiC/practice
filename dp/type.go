@@ -1,6 +1,6 @@
 package dp
 
-func Mins(nums ...int) int {
+func Min(nums ...int) int {
 	if len(nums) == 0 {
 		return 0
 	}
@@ -13,16 +13,15 @@ func Mins(nums ...int) int {
 	return res
 }
 
-func Min(x, y int) int {
-	if x < y {
-		return x
+func Max(nums ...int) int {
+	if len(nums) == 0 {
+		return 0
 	}
-	return y
-}
-
-func Max(x, y int) int {
-	if x < y {
-		return y
+	res := nums[0]
+	for i := 0; i < len(nums); i++ {
+		if nums[i] > res {
+			res = nums[i]
+		}
 	}
-	return x
+	return res
 }
