@@ -54,28 +54,22 @@ func canPartition2(nums []int) bool {
 		return true
 	}
 
-	s := 0
-	var f func(i int) bool
-	f = func(idx int) bool {
+	var f func(i, s int) bool
+	f = func(idx, s int) bool {
 		if s == target {
 			return true
 		}
-		if s > target {
-			return false
-		}
-		if idx >= nlen {
+		if s > target || idx >= nlen {
 			return false
 		}
 
 		for j := idx; j < nlen; j++ {
-			s += nums[j]
-			if f(j + 1) {
+			if f(j+1, s+nums[j]) || f(j+1, s) {
 				return true
 			}
-			s -= nums[j]
 		}
 		return false
 	}
 
-	return f(0)
+	return f(0, 0)
 }
