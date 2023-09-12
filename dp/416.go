@@ -20,24 +20,16 @@ func canPartition(nums []int) bool {
 	if maxNu == target {
 		return true
 	}
-	dp := make([][]bool, nlen)
+	dp := make([]bool, target+1)
+	dp[0] = true
 	for i := 0; i < nlen; i++ {
-		dp[i] = make([]bool, target+1)
-		dp[i][0] = true
-	}
-	dp[0][nums[0]] = true
-	for i := 1; i < nlen; i++ {
 		curNum := nums[i]
-		for j := 1; j <= target; j++ {
-			if j >= curNum {
-				dp[i][j] = dp[i-1][j-curNum] || dp[i-1][j]
-			} else {
-				dp[i][j] = dp[i-1][j]
-			}
+		for j := target; j >= curNum; j-- {
+			dp[j] = dp[j-curNum] || dp[j]
 		}
 	}
 
-	return dp[nlen-1][target]
+	return dp[target]
 }
 
 // 回溯法会超时
