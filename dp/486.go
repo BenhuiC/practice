@@ -35,3 +35,25 @@ func predictTheWinner(nums []int) bool {
 
 	return dp1[0][n-1] >= dp2[0][n-1]
 }
+
+func predictTheWinner2(nums []int) bool {
+	n := len(nums)
+	dp1, dp2 := make([]int, n), make([]int, n)
+	for i := n - 1; i >= 0; i-- {
+		dp1[i] = nums[i]
+		dp2[i] = 0
+		for j := i + 1; j < n; j++ {
+			left := nums[i] + dp2[j]
+			right := nums[j] + dp2[j-1]
+			if left >= right {
+				dp2[j] = dp1[j]
+				dp1[j] = left
+			} else {
+				dp1[j] = right
+				dp2[j] = dp1[j-1]
+			}
+		}
+	}
+
+	return dp1[n-1] >= dp2[n-1]
+}

@@ -35,7 +35,7 @@ func Test_predictTheWinner(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := predictTheWinner(tt.args.nums); got != tt.want {
+			if got := predictTheWinner2(tt.args.nums); got != tt.want {
 				t.Errorf("predictTheWinner() = %v, want %v", got, tt.want)
 			}
 		})
