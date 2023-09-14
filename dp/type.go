@@ -25,3 +25,9 @@ func Max(nums ...int) int {
 	}
 	return res
 }
+
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
