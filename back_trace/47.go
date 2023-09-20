@@ -29,3 +29,32 @@ func permuteUnique(nums []int) [][]int {
 
 	return res
 }
+
+func permuteUnique2(nums []int) [][]int {
+	res := make([][]int, 0)
+	var backtrack func(ary []int, idx int)
+	backtrack = func(ary []int, idx int) {
+		if idx == len(nums) {
+			tmp := make([]int, len(nums))
+			copy(tmp, ary)
+			res = append(res, tmp)
+			return
+		}
+		m := make(map[int]bool)
+		for i := idx; i < len(nums); i++ {
+			if m[nums[i]] {
+				// 设nums[i]=x
+				// m[nums[i]] 为true则表示为之前数字x与当前值替换过，则跳过
+				continue
+			}
+			m[nums[i]] = true
+			nums[i], nums[idx] = nums[idx], nums[i]
+			backtrack(nums, idx+1)
+			nums[i], nums[idx] = nums[idx], nums[i]
+		}
+	}
+	sort.Ints(nums)
+	backtrack(nums, 0)
+
+	return res
+}
