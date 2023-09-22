@@ -1,49 +1,48 @@
 package back_trace
 
-// not pass
-func canPartitionKSubsets(nums []int, k int) bool {
-	sum := 0
-	mx := 0
-	for _, v := range nums {
-		sum += v
-		if v > mx {
-			mx = v
-		}
-	}
-	if sum%k != 0 {
-		return false
-	}
-	part := sum / k
-	if mx > part {
-		return false
-	}
+import "sort"
 
-	res := false
+func canPartitionKSubsets(nums []int, k int) bool {
+	all := 0
+	for _, v := range nums {
+		all += v
+	}
+	if all%k != 0 {
+		return false
+	}
+	avg := all / k
+	sort.Ints(nums)
+	if nums[len(nums)-1] > avg {
+		return false
+	}
 	n := len(nums)
-	use := make([]bool, n)
-	var backtrace func(sm, p int)
-	backtrace = func(sm, p int) {
-		if res == true {
-			return
+	mask := 1<<n - 1        // 最终结果，每一位都是1
+	st := make([]int, 1<<n) // 状态数组 -1 不符合，1 符合，0 初始化状态
+
+	var dfs func(int, int) bool
+	dfs = func(s int, v int) bool {
+		// s是当前数组的使用状态，通过二进制位来判断。第i位为1则nums[i]已使用
+		if s == mask {
+			return true
 		}
-		if sm == part {
-			if p == k {
-				res = true
-				return
-			}
-			p++
-			sm = 0
+		if st[s] != 0 {
+			return st[s] == 1
 		}
-		for i, v := range nums {
-			if use[i] || sm+v > part {
+		for i, val := range nums {
+			if s>>i&1 == 1 { // 当前位已使用
 				continue
 			}
-			use[i] = true
-			backtrace(sm+v, p)
-			use[i] = false
+			if v+val > avg {
+				break
+			}
+			if dfs(s|1<<i, (v+val)%avg) {
+				st[s] = 1
+				return true
+			}
 		}
+		st[s] = -1
+		return false
 	}
-	backtrace(0, 1)
 
-	return res
+	return dfs(0, 0)
 }
