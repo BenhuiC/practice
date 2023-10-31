@@ -1,7 +1,5 @@
 package offer
 
-import "fmt"
-
 func kSmallestPairs(nums1 []int, nums2 []int, k int) [][]int {
 	n1, n2 := len(nums1), len(nums2)
 	m1, m2 := make(map[int]int, n1), make(map[int]int, n2)
