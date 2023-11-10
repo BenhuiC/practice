@@ -1,15 +1,15 @@
 package offer
 
-type Node struct {
+type Node429 struct {
 	Val      int
-	Children []*Node
+	Children []*Node429
 }
 
-func levelOrder(root *Node) [][]int {
+func levelOrder(root *Node429) [][]int {
 	if root == nil {
 		return nil
 	}
-	ary := make([]*Node, 0, 1)
+	ary := make([]*Node429, 0, 1)
 	res := make([][]int, 0)
 	ary = append(ary, root)
 	for len(ary) != 0 {
