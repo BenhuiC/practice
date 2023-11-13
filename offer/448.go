@@ -1,7 +1,5 @@
 package offer
 
-import "fmt"
-
 func findDisappearedNumbers(nums []int) []int {
 	res := make([]int, 0)
 	for i := 0; i < len(nums); i++ {
