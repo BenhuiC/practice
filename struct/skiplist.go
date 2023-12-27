@@ -9,44 +9,46 @@ import (
 const maxLevel = 32
 const defaultLevel = 4
 
-type skipListNode struct {
-	val     int
-	forward []*skipListNode
+type skipListNode[T any] struct {
+	score   int
+	val     *T
+	forward []*skipListNode[T]
 }
 
-type skilList struct {
+type skipList[T any] struct {
 	level  int
-	header *skipListNode
+	header *skipListNode[T]
 }
 
-func NewSkipList(level int) *skilList {
+func NewSkipList[T any](level int) *skipList[T] {
 	if level > maxLevel {
 		level = maxLevel
 	}
 	if level <= 0 {
 		level = defaultLevel
 	}
-	return &skilList{
+	return &skipList[T]{
 		level:  level,
-		header: &skipListNode{val: -1, forward: make([]*skipListNode, maxLevel)},
+		header: &skipListNode[T]{score: -1, forward: make([]*skipListNode[T], maxLevel)},
 	}
 }
 
-func (s *skilList) Add(val int) {
-	if s.Search(val) {
-		return
+func (s *skipList[T]) Add(score int, val *T) bool {
+	if _, exist := s.Search(score); exist {
+		return false
 	}
 	newLevel := s.randomLevel()
 	if s.level < newLevel {
 		s.level = newLevel
 	}
-	newNode := &skipListNode{
+	newNode := &skipListNode[T]{
+		score:   score,
 		val:     val,
-		forward: make([]*skipListNode, newLevel),
+		forward: make([]*skipListNode[T], newLevel),
 	}
 	cur := s.header
 	for i := s.level - 1; i >= 0; i-- {
-		for cur.forward[i] != nil && cur.forward[i].val < val {
+		for cur.forward[i] != nil && cur.forward[i].score < score {
 			cur = cur.forward[i]
 		}
 		if i < newLevel {
@@ -54,9 +56,10 @@ func (s *skilList) Add(val int) {
 			cur.forward[i] = newNode
 		}
 	}
+	return true
 }
 
-func (s *skilList) randomLevel() int {
+func (s *skipList[T]) randomLevel() int {
 	// 这里随机数种子需要使用UnixNano，如果使用Unix会导致在同一秒的请求生成的level相同
 	rander := rand.New(rand.NewSource(time.Now().UnixNano()))
 	lv := 1
@@ -66,32 +69,35 @@ func (s *skilList) randomLevel() int {
 	return lv
 }
 
-func (s *skilList) Search(val int) bool {
+func (s *skipList[T]) Search(score int) (val *T, exit bool) {
 	cur := s.header
 	for i := s.level - 1; i >= 0; i-- {
-		for cur.forward[i] != nil && cur.forward[i].val <= val {
+		for cur.forward[i] != nil && cur.forward[i].score <= score {
 			cur = cur.forward[i]
 		}
 	}
-	if cur.val == val {
-		return true
+	if cur.score == score {
+		return cur.val, true
 	}
-	return false
+	return nil, false
 }
 
-func (s *skilList) Delete(val int) {
+func (s *skipList[T]) Delete(score int) bool {
 	cur := s.header
+	isDelete := false
 	for i := s.level - 1; i >= 0; i-- {
-		for cur.forward[i] != nil && cur.forward[i].val < val {
+		for cur.forward[i] != nil && cur.forward[i].score < score {
 			cur = cur.forward[i]
 		}
-		if cur.forward[i] != nil && cur.forward[i].val == val {
+		if cur.forward[i] != nil && cur.forward[i].score == score {
 			cur.forward[i] = cur.forward[i].forward[i]
+			isDelete = true
 		}
 	}
+	return isDelete
 }
 
-func (s *skilList) String() string {
+func (s *skipList[T]) String() string {
 	res := fmt.Sprintf("level:%d\n", s.level)
 	for i := s.level - 1; i >= 0; i-- {
 		cur := s.header
@@ -100,7 +106,7 @@ func (s *skilList) String() string {
 		}
 		res += fmt.Sprintf("header\t")
 		for cur = cur.forward[i]; cur != nil; cur = cur.forward[i] {
-			res += fmt.Sprintf("\t%d", cur.val)
+			res += fmt.Sprintf("\t%d", cur.score)
 		}
 		res += "\n"
 	}
