@@ -9,31 +9,31 @@ import (
 const maxLevel = 32
 const defaultLevel = 4
 
-type skipListNode[T any] struct {
+type ArraySkipListNode[T any] struct {
 	score   int
 	val     *T
-	forward []*skipListNode[T]
+	forward []*ArraySkipListNode[T]
 }
 
-type skipList[T any] struct {
+type ArraySkipList[T any] struct {
 	level  int
-	header *skipListNode[T]
+	header *ArraySkipListNode[T]
 }
 
-func NewSkipList[T any](level int) *skipList[T] {
+func NewSkipList[T any](level int) *ArraySkipList[T] {
 	if level > maxLevel {
 		level = maxLevel
 	}
 	if level <= 0 {
 		level = defaultLevel
 	}
-	return &skipList[T]{
+	return &ArraySkipList[T]{
 		level:  level,
-		header: &skipListNode[T]{score: -1, forward: make([]*skipListNode[T], maxLevel)},
+		header: &ArraySkipListNode[T]{score: -1, forward: make([]*ArraySkipListNode[T], maxLevel)},
 	}
 }
 
-func (s *skipList[T]) Add(score int, val *T) bool {
+func (s *ArraySkipList[T]) Add(score int, val *T) bool {
 	if _, exist := s.Search(score); exist {
 		return false
 	}
@@ -41,10 +41,10 @@ func (s *skipList[T]) Add(score int, val *T) bool {
 	if s.level < newLevel {
 		s.level = newLevel
 	}
-	newNode := &skipListNode[T]{
+	newNode := &ArraySkipListNode[T]{
 		score:   score,
 		val:     val,
-		forward: make([]*skipListNode[T], newLevel),
+		forward: make([]*ArraySkipListNode[T], newLevel),
 	}
 	cur := s.header
 	for i := s.level - 1; i >= 0; i-- {
@@ -59,7 +59,7 @@ func (s *skipList[T]) Add(score int, val *T) bool {
 	return true
 }
 
-func (s *skipList[T]) randomLevel() int {
+func (s *ArraySkipList[T]) randomLevel() int {
 	// 这里随机数种子需要使用UnixNano，如果使用Unix会导致在同一秒的请求生成的level相同
 	rander := rand.New(rand.NewSource(time.Now().UnixNano()))
 	lv := 1
@@ -69,7 +69,7 @@ func (s *skipList[T]) randomLevel() int {
 	return lv
 }
 
-func (s *skipList[T]) Search(score int) (val *T, exit bool) {
+func (s *ArraySkipList[T]) Search(score int) (*T, bool) {
 	cur := s.header
 	for i := s.level - 1; i >= 0; i-- {
 		for cur.forward[i] != nil && cur.forward[i].score <= score {
@@ -82,7 +82,7 @@ func (s *skipList[T]) Search(score int) (val *T, exit bool) {
 	return nil, false
 }
 
-func (s *skipList[T]) Delete(score int) bool {
+func (s *ArraySkipList[T]) Delete(score int) bool {
 	cur := s.header
 	isDelete := false
 	for i := s.level - 1; i >= 0; i-- {
@@ -94,10 +94,13 @@ func (s *skipList[T]) Delete(score int) bool {
 			isDelete = true
 		}
 	}
+	for s.level >= 0 && s.header.forward[s.level] == nil {
+		s.level--
+	}
 	return isDelete
 }
 
-func (s *skipList[T]) String() string {
+func (s *ArraySkipList[T]) String() string {
 	res := fmt.Sprintf("level:%d\n", s.level)
 	for i := s.level - 1; i >= 0; i-- {
 		cur := s.header
