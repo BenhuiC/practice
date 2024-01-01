@@ -5,6 +5,6 @@ import (
 	"testing"
 )
 
-func Test_reverseWords(t *testing.T){
+func Test_reverseWords(t *testing.T) {
 	fmt.Println(reverseWords("hello world"))
 }
