@@ -11,23 +11,21 @@ func deleteAndEarn(nums []int) int {
 		}
 		mp[n] += n
 	}
-	dp := make([][2]int, mx+1)
+	dp := make([]int, mx+1)
 	for i := 1; i <= mx; i++ {
 		v, ok := mp[i]
 		if !ok {
-			dp[i][0] = max(dp[i-1][0], dp[i-1][1])
-			dp[i][1] = dp[i][0]
+			dp[i] = dp[i-1]
 		} else {
-			dp[i][0] = max(dp[i-1][0], dp[i-1][1])
 			if i == 1 {
-				dp[i][1] = v
+				dp[i] = v
 			} else {
-				dp[i][1] = max(dp[i-2][0], dp[i-2][1]) + v
+				dp[i] = max(dp[i-2]+v, dp[i-1])
 			}
 		}
 	}
 
-	return max(dp[mx][0], dp[mx][1])
+	return dp[mx]
 }
 
 func max(a ...int) int {
