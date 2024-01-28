@@ -1,4 +1,4 @@
-package offer
+package dp
 
 import "testing"
 

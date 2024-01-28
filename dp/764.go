@@ -1,4 +1,4 @@
-package offer
+package dp
 
 func orderOfLargestPlusSign(n int, mines [][]int) int {
 	dp := make([][]int, n)
