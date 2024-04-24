@@ -48,3 +48,24 @@ func deckRevealedIncreasing(deck []int) []int {
 	}
 	return res
 }
+
+func deckRevealedIncreasing2(deck []int) []int {
+	n := len(deck)
+	res := make([]int, n)
+	idxs := make([]int, 0, n)
+	for i := 0; i < n; i++ {
+		idxs = append(idxs, i)
+	}
+	sort.Ints(deck)
+
+	for _, d := range deck {
+		res[idxs[0]] = d
+		idxs = idxs[1:]
+		if len(idxs) > 0 {
+			v := idxs[0]
+			idxs = append(idxs[1:], v)
+		}
+	}
+
+	return res
+}

@@ -38,7 +38,7 @@ func Test_deckRevealedIncreasing(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := deckRevealedIncreasing(tt.args.deck); !reflect.DeepEqual(got, tt.want) {
+			if got := deckRevealedIncreasing2(tt.args.deck); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("deckRevealedIncreasing() = %v, want %v", got, tt.want)
 			}
 		})
