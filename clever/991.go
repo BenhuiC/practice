@@ -1,4 +1,4 @@
-package dp
+package clever
 
 func brokenCalc(startValue int, target int) int {
 	ans := 0
