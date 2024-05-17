@@ -33,3 +33,15 @@ func isValid(s string) bool {
 	}
 	return len(stack) == 0
 }
+
+func isValid2(s string) bool {
+	stack := make([]int32, 0)
+	for _, c := range s {
+		stack = append(stack, c)
+		n := len(stack)
+		if n >= 3 && string(stack[n-3:]) == "abc" {
+			stack = stack[:n-3]
+		}
+	}
+	return len(stack) == 0
+}
